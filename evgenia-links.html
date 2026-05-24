@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Женя | Мама на острове</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    background: #e8f4f8;
+    background-image:
+      radial-gradient(ellipse at 20% 0%, rgba(43,95,142,0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 100%, rgba(200,137,58,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.4) 0%, transparent 70%);
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 40px 16px 60px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* HEADER */
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 32px;
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .avatar-wrap {
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0 8px 32px rgba(43,95,142,0.2);
+  }
+
+  .avatar-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid rgba(200,137,58,0.5);
+    animation: spin 12s linear infinite;
+  }
+
+  .avatar-placeholder {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2B5F8E, #C8893A);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    border: 3px solid #fff;
+    box-shadow: 0 8px 32px rgba(43,95,142,0.2);
+  }
+
+  .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #2B5F8E;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .tagline {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #C8893A;
+    font-weight: 600;
+  }
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #C8893A, transparent);
+    margin: 12px auto 0;
+  }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(43,95,142,0.5);
+    font-weight: 700;
+    margin: 24px 0 12px;
+    align-self: flex-start;
+    padding-left: 4px;
+  }
+
+  /* BOOK CARD */
+  .book-section {
+    width: 100%;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(255,255,255,0.8);
+    box-shadow: 0 4px 20px rgba(43,95,142,0.08);
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .book-section:nth-child(2) { animation-delay: 0.1s; }
+  .book-section:nth-child(3) { animation-delay: 0.2s; }
+  .book-section:nth-child(4) { animation-delay: 0.3s; }
+
+  .book-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #2B5F8E;
+    margin-bottom: 4px;
+  }
+
+  .book-sub {
+    font-size: 10px;
+    color: rgba(43,95,142,0.5);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .links-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .store-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+    border: 1.5px solid transparent;
+  }
+
+  .store-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .btn-litres {
+    background: #ff6b00;
+    color: white;
+  }
+
+  .btn-ridero {
+    background: #ff8c00;
+    color: white;
+  }
+
+  .btn-ozon {
+    background: #005bff;
+    color: white;
+  }
+
+  .btn-bookmate {
+    background: #e63946;
+    color: white;
+  }
+
+  .btn-amazon {
+    background: #FF9900;
+    color: #1a1a1a;
+  }
+
+  .btn-wb {
+    background: #CB11AB;
+    color: white;
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: #2B5F8E;
+    border-color: rgba(43,95,142,0.3);
+  }
+
+  /* CONTACT */
+  .contact-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px;
+    background: linear-gradient(135deg, #2B5F8E, #1a4a73);
+    color: white;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 8px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 16px rgba(43,95,142,0.3);
+    animation: fadeUp 0.5s 0.4s ease both;
+  }
+
+  .contact-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(43,95,142,0.4);
+  }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 32px;
+    font-size: 10px;
+    color: rgba(43,95,142,0.35);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: fadeUp 0.5s 0.5s ease both;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* Wave decoration */
+  .wave-deco {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(180deg, transparent, rgba(43,95,142,0.06));
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="avatar-wrap">
+      <div class="avatar-placeholder">🌊</div>
+      <div class="avatar-ring"></div>
+    </div>
+    <div class="name">Евгения Спитери</div>
+    <div class="tagline">Мама на острове · Автор книг</div>
+    <div class="divider"></div>
+  </div>
+
+  <!-- BOOK 1 -->
+  <div class="section-title">📚 Мои книги</div>
+
+  <div class="book-section">
+    <div class="book-title">Сказки Принцессы Крохи</div>
+    <div class="book-sub">Детская сказка · Русский</div>
+    <div class="links-grid">
+      <a href="https://www.litres.ru/book/evgeniya-spiteri/skazki-princessy-krohi-67171359/" class="store-btn btn-litres" target="_blank">📖 Литрес</a>
+      <a href="https://ridero.ru/books/widget/skazki_princessy_krokhi/" class="store-btn btn-ridero" target="_blank">📗 Ridero</a>
+      <a href="https://www.ozon.ru/product/skazki-printsessy-krohi-evgeniya-spiteri-185076451/" class="store-btn btn-ozon" target="_blank">🛒 Ozon</a>
+      <a href="https://bookmate.com/books/m9be0zRd" class="store-btn btn-bookmate" target="_blank">📱 Bookmate</a>
+    </div>
+  </div>
+
+  <!-- BOOK 2 -->
+  <div class="book-section">
+    <div class="book-title">The Little Bear and The Little Beaver</div>
+    <div class="book-sub">Children's tale · English</div>
+    <div class="links-grid">
+      <a href="https://www.amazon.com/dp/B0CTHSLK4M" class="store-btn btn-amazon" target="_blank">📦 Amazon</a>
+    </div>
+  </div>
+
+  <!-- BOOK 3 -->
+  <div class="book-section">
+    <div class="book-title">Tales about Dragon John</div>
+    <div class="book-sub">Children's tale · English · скоро</div>
+    <div class="links-grid">
+      <a href="#" class="store-btn btn-outline" target="_blank">⏳ Скоро на Amazon</a>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <a href="https://www.instagram.com/litt.lesicily/" class="contact-btn" target="_blank">
+    ✉️ Написать мне в Instagram
+  </a>
+
+  <div class="footer">Мальта · Сицилия · 🌊</div>
+
+</div>
+
+<div class="wave-deco"></div>
+
+</body>
+</html>
